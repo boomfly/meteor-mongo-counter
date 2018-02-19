@@ -12,11 +12,11 @@ callCounter = (method, collection, args...) ->
     future.wait()
 
 
-_deleteCounters = (collection) ->
+export deleteCounters = (collection) ->
   callCounter('remove', collection, {}, {safe: true})
 
 
-_incrementCounter = (collection, counterName, amount = 1) ->
+export incrementCounter = (collection, counterName, amount = 1) ->
   newDoc = callCounter(
     'findAndModify',
     collection,
@@ -28,11 +28,11 @@ _incrementCounter = (collection, counterName, amount = 1) ->
   return newDoc?.value?.next_val or newDoc.next_val
 
 
-_decrementCounter = (collection, counterName, amount = 1) ->
+export decrementCounter = (collection, counterName, amount = 1) ->
   _incrementCounter(collection, counterName, -amount)
 
 
-_setCounter = (collection, counterName, value) ->
+export setCounter = (collection, counterName, value) ->
   callCounter(
     'update',
     collection,
@@ -40,15 +40,3 @@ _setCounter = (collection, counterName, value) ->
     {$set: {next_val: value}}
   )
   return
-
-
-if Package?
-  incrementCounter = _incrementCounter
-  decrementCounter = _decrementCounter
-  setCounter = _setCounter
-  deleteCounters = _deleteCounters
-else
-  @incrementCounter = _incrementCounter
-  @decrementCounter = _decrementCounter
-  @setCounter = _setCounter
-  @deleteCounters = _deleteCounters
