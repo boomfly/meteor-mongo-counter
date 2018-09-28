@@ -9,7 +9,7 @@ Package.onUse(function (api) {
   api.versionsFrom("METEOR@1.6");
   api.use('underscore', 'server');
   api.use('ecmascript', 'server');
-  api.use(['coffeescript@2.0.2_1', 'mongo-livedata'], 'server');
+  api.use(['coffeescript', 'mongo-livedata'], 'server');
   api.mainModule('counter.coffee', 'server');
 });
 

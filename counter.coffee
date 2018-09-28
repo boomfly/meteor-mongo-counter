@@ -27,9 +27,8 @@ export incrementCounter = (collection, counterName, amount = 1) ->
   )                             # callback added by wrapAsync
   return newDoc?.value?.next_val or newDoc.next_val
 
-
 export decrementCounter = (collection, counterName, amount = 1) ->
-  _incrementCounter(collection, counterName, -amount)
+  incrementCounter(collection, counterName, -amount)
 
 
 export setCounter = (collection, counterName, value) ->
