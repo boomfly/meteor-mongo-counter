@@ -14,7 +14,7 @@ Package.onUse(function (api) {
 });
 
 Package.onTest(function(api) {
-  api.use('coffeescript@2.0.2_1');
+  api.use('coffeescript');
   api.use('tinytest');
   api.use('konecty:mongo-counter');
   api.addFiles('tests.counter.coffee', 'server');
